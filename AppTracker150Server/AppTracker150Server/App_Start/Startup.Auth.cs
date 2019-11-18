@@ -9,7 +9,7 @@ using Microsoft.Owin.Security.Google;
 using Microsoft.Owin.Security.OAuth;
 using Owin;
 using AppTracker150Server.Providers;
-using AppTracker150Server.Models;
+using AppTracker150Server.Data;
 
 namespace AppTracker150Server
 {

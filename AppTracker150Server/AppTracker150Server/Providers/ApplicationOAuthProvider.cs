@@ -9,7 +9,7 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using Microsoft.Owin.Security.Cookies;
 using Microsoft.Owin.Security.OAuth;
-using AppTracker150Server.Models;
+using AppTracker150Server.Data;
 
 namespace AppTracker150Server.Providers
 {
