@@ -3,7 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29509.3
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AppTracker150Server", "AppTracker150Server\AppTracker150Server.csproj", "{C38B3051-461E-4BAB-9D81-B36B4BC06A2B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AppTracker150Server.WebAPI", "AppTracker150Server\AppTracker150Server.WebAPI.csproj", "{C38B3051-461E-4BAB-9D81-B36B4BC06A2B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AppTracker150Server.Models", "AppTracker150Server.Models\AppTracker150Server.Models.csproj", "{A1CB6150-A0A6-4EFC-A7EB-EB744105BCC2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AppTracker150Server.Services", "AppTracker150Server.Services\AppTracker150Server.Services.csproj", "{1FFBA02D-C593-4678-87B7-86C012C7D189}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AppTracker150Server.Data", "AppTracker150Server.Data\AppTracker150Server.Data.csproj", "{BD4FC323-C52E-45BF-91F5-88F023676C7C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +21,18 @@ Global
 		{C38B3051-461E-4BAB-9D81-B36B4BC06A2B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C38B3051-461E-4BAB-9D81-B36B4BC06A2B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C38B3051-461E-4BAB-9D81-B36B4BC06A2B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A1CB6150-A0A6-4EFC-A7EB-EB744105BCC2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A1CB6150-A0A6-4EFC-A7EB-EB744105BCC2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A1CB6150-A0A6-4EFC-A7EB-EB744105BCC2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A1CB6150-A0A6-4EFC-A7EB-EB744105BCC2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1FFBA02D-C593-4678-87B7-86C012C7D189}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1FFBA02D-C593-4678-87B7-86C012C7D189}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1FFBA02D-C593-4678-87B7-86C012C7D189}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1FFBA02D-C593-4678-87B7-86C012C7D189}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BD4FC323-C52E-45BF-91F5-88F023676C7C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BD4FC323-C52E-45BF-91F5-88F023676C7C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BD4FC323-C52E-45BF-91F5-88F023676C7C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BD4FC323-C52E-45BF-91F5-88F023676C7C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
