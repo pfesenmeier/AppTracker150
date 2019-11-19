@@ -26,10 +26,16 @@ namespace AppTracker150Server.Data
         }
 
         public DbSet<Application> Applications { get; set; }
+        public DbSet<Cohort> Cohorts { get; set; }
+        public DbSet<Student> Student { get; set; }
+
 
         public static ApplicationDbContext Create()
         {
             return new ApplicationDbContext();
         }
+
+
+     
     }
 }
