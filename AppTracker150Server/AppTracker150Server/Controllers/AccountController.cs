@@ -26,9 +26,10 @@ namespace AppTracker150Server.Controllers
     {
         private const string LocalLoginProvider = "Local";
         private ApplicationUserManager _userManager;
-
+        ApplicationDbContext context;
         public AccountController()
         {
+            context = new ApplicationDbContext();
         }
 
         public AccountController(ApplicationUserManager userManager,
@@ -337,7 +338,7 @@ namespace AppTracker150Server.Controllers
             {
                 return GetErrorResult(result);
             }
-
+            await this.UserManager.AddToRoleAsync(user.Id, model.UserRoles);
             return Ok();
         }
 
