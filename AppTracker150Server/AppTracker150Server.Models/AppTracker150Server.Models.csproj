@@ -46,6 +46,10 @@
     <Compile Include="ApplicationDetail.cs" />
     <Compile Include="ApplicationEdit.cs" />
     <Compile Include="ApplicationListItem.cs" />
+    <Compile Include="CohortCreate.cs" />
+    <Compile Include="CohortDetail.cs" />
+    <Compile Include="CohortEdit.cs" />
+    <Compile Include="CohortListItem.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+
 namespace AppTracker150Server.Models
 {
     public class ApplicationCreate
