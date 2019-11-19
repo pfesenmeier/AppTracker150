@@ -42,6 +42,7 @@ namespace AppTracker150Server
 
                 var user = new ApplicationUser();
                 user.Email = "pfesenmeier@gmail.com";
+                user.UserName = "pfesenmeier@gmail.com";
 
                 string userPWD = "A@Z200711";
 

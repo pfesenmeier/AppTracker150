@@ -321,8 +321,8 @@ namespace AppTracker150Server.Controllers
         }
 
         // POST api/Account/Register
-        [AllowAnonymous]
         [Route("Register")]
+        [Authorize(Roles = "Admin")]
         public async Task<IHttpActionResult> Register(RegisterBindingModel model)
         {
             if (!ModelState.IsValid)

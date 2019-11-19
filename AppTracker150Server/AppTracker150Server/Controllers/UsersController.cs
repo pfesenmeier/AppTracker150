@@ -32,7 +32,12 @@ namespace AppTracker150Server.Controllers
             }
             return BadRequest();
         }
-        public bool isAdminUser()
+        public IHttpActionResult Post()
+        {
+            return Ok();
+        }
+
+        private bool isAdminUser()
         {
             if (User.Identity.IsAuthenticated)
             {
