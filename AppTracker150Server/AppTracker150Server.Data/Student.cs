@@ -10,7 +10,7 @@ namespace AppTracker150Server.Data
      public class Student
      {
         [Required]
-        public double Id { get; set; }
+        public Guid Id { get; set; }
 
         public string FirstName { get; set; }
 

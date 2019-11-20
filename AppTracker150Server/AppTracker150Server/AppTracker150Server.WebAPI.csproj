@@ -215,7 +215,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
-    <Compile Include="Controllers\ValuesController.cs" />
+    <Compile Include="Controllers\StudentsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -318,6 +318,14 @@
     <ProjectReference Include="..\AppTracker150Server.Data\AppTracker150Server.Data.csproj">
       <Project>{BD4FC323-C52E-45BF-91F5-88F023676C7C}</Project>
       <Name>AppTracker150Server.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\AppTracker150Server.Models\AppTracker150Server.Models.csproj">
+      <Project>{a1cb6150-a0a6-4efc-a7eb-eb744105bcc2}</Project>
+      <Name>AppTracker150Server.Models</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\AppTracker150Server.Services\AppTracker150Server.Services.csproj">
+      <Project>{1ffba02d-c593-4678-87b7-86c012c7d189}</Project>
+      <Name>AppTracker150Server.Services</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

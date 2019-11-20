@@ -36,7 +36,7 @@ namespace AppTracker150Server.Services
                 return context.SaveChanges() == 1;
             }
         }
-        public IEnumerable<StudentListItem>GetStudent()
+        public IEnumerable<StudentListItem>GetStudents()
         {
             using (var context = new ApplicationDbContext())
             {
@@ -58,7 +58,7 @@ namespace AppTracker150Server.Services
 
             }
         }
-        public StudentDetail GetStudentById (int id)
+        public StudentDetail GetStudentById (Guid id)
         {
             using (var context = new ApplicationDbContext())
             {
@@ -99,7 +99,7 @@ namespace AppTracker150Server.Services
             };
         }
 
-        public bool DeleteStudent(int Id)
+        public bool DeleteStudent(Guid Id)
         {
             using (var context = new ApplicationDbContext())
             {
