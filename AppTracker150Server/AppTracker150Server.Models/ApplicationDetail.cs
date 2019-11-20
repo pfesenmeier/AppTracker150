@@ -11,7 +11,7 @@ namespace AppTracker150Server.Models
     public class ApplicationDetail
     {
         public int ApplicationId { get; set; }
-        public ApplicationStatus ApplicationStatus { get; set; }
+        public string ApplicationStatus { get; set; }
         public string CompanyName { get; set; }
         public string PositionName { get; set; }
         public string JobLink { get; set; }
