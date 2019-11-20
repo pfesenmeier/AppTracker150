@@ -20,7 +20,6 @@ namespace AppTracker150Server.Models
         public string LastName { get; set; }
 
         [Required]
-
         public string CohortId { get; set; }
 
         [Required]
@@ -32,5 +31,8 @@ namespace AppTracker150Server.Models
         [Required]
         public string PortfolioLink { get; set; }
 
-     }
+        [Required]
+        public string GitHub { get; set; }
+
+    }
 }
