@@ -28,6 +28,7 @@ namespace AppTracker150Server.Services
                     ResumeLink = model.ResumeLink,
                     LinkedInLink = model.LinkedInLink,
                     PortfolioLink = model.PortfolioLink,
+                    GitHub = model.GitHub,
                 };
             using ( var context = new ApplicationDbContext())
             {
@@ -50,6 +51,7 @@ namespace AppTracker150Server.Services
                         ResumeLink = e.ResumeLink,
                         LinkedInLink = e.LinkedInLink,
                         PortfolioLink = e.PortfolioLink,
+                        GitHub = e.GitHub,
 
                     });
                 return entity.ToArray();
@@ -71,6 +73,7 @@ namespace AppTracker150Server.Services
                         ResumeLink = entity.ResumeLink,
                         LinkedInLink = entity.LinkedInLink,
                         PortfolioLink = entity.PortfolioLink,
+                        GitHub = entity.GitHub,
 
                     };
 
@@ -89,6 +92,7 @@ namespace AppTracker150Server.Services
                 entity.ResumeLink = model.ResumeLink;
                 entity.LinkedInLink = model.LinkedInLink;
                 entity.PortfolioLink = model.PortfolioLink;
+                entity.GitHub = model.GitHub;
 
                 return context.SaveChanges() == 1;
 
