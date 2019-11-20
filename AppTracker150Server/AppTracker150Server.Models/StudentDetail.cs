@@ -10,7 +10,7 @@ namespace AppTracker150Server.Models
     public class StudentDetail
     {
         [Required]
-        public double Id { get; set; }
+        public Guid Id { get; set; }
 
         [Required]
         public string FirstName { get; set; }
@@ -30,6 +30,4 @@ namespace AppTracker150Server.Models
         [Required]
         public string PortfolioLink { get; set; }
     }
-}
-
 }

@@ -57,6 +57,26 @@ namespace AppTracker150Server.Services
                 return entity.ToArray();
             }
         }
+        public IEnumerable<ApplicationListItem> GetApplications(Guid id)
+        {
+            using (var context = new ApplicationDbContext())
+            {
+                var entity =
+                      context.Applications
+                             .Where(e => e.StudentId == id)
+                             .Select(
+                                e =>
+                                    new ApplicationListItem()
+                                    {
+                                        ApplicationId = e.Id,
+                                        CompanyName = e.CompanyName,
+                                        PostitionName = e.PositionName,
+                                        ApplicationStatus = e.ApplicationStatus,
+                                        DateCreatedUtc = e.DateCreatedUtc
+                                    });
+                return entity.ToArray();
+            }
+        }
         public ApplicationDetail GetApplicationById(int id)
         {
             using (var context = new ApplicationDbContext())
