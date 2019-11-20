@@ -10,7 +10,7 @@ namespace AppTracker150Server.Data
      public class Student
      {
         [Required]
-        public double Id { get; set; }
+        public Guid Id { get; set; }
 
         public string FirstName { get; set; }
 
@@ -23,6 +23,8 @@ namespace AppTracker150Server.Data
         public string LinkedInLink { get; set; }
 
         public string PortfolioLink { get; set; }
+
+        public string GitHub { get; set; }
 
     }
 }
