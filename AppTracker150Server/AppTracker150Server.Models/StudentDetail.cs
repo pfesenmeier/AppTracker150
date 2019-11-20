@@ -29,5 +29,8 @@ namespace AppTracker150Server.Models
 
         [Required]
         public string PortfolioLink { get; set; }
+
+        [Required]
+        public string GitHub { get; set; }
     }
 }
