@@ -51,7 +51,7 @@ namespace AppTracker150Server.Services
                                         ApplicationId = e.Id,
                                         CompanyName = e.CompanyName,
                                         PostitionName = e.PositionName,
-                                        ApplicationStatus = e.ApplicationStatus,
+                                        ApplicationStatus = e.ApplicationStatus.ToString(),
                                         DateCreatedUtc = e.DateCreatedUtc
                                     });
                 return entity.ToArray();
@@ -71,25 +71,34 @@ namespace AppTracker150Server.Services
                                         ApplicationId = e.Id,
                                         CompanyName = e.CompanyName,
                                         PostitionName = e.PositionName,
-                                        ApplicationStatus = e.ApplicationStatus,
+                                        ApplicationStatus = e.ApplicationStatus.ToString(),
                                         DateCreatedUtc = e.DateCreatedUtc
                                     });
                 return entity.ToArray();
             }
         }
-        public ApplicationDetail GetApplicationById(int id)
+        public ApplicationDetail GetApplicationById(int id, Guid? _studentId = null)
         {
+            Guid studentId; 
+            if (_studentId == null)
+            {
+                studentId = _userId;
+            }
+            else
+            {
+                studentId = (Guid)_studentId;
+            }
             using (var context = new ApplicationDbContext())
             {
                 var entity =
                     context.Applications
-                            .Single(e => e.Id == id && e.StudentId == _userId);
+                            .Single(e => e.Id == id && e.StudentId == studentId);
                 return
                     new ApplicationDetail
                     {
                         ApplicationId = entity.Id,
                         CompanyName = entity.CompanyName,
-                        ApplicationStatus = entity.ApplicationStatus,
+                        ApplicationStatus = entity.ApplicationStatus.ToString(),
                         Contacts = entity.Contacts,
                         DateCreatedUtc = entity.DateCreatedUtc,
                         DateModifiedUtc = entity.DateModifiedUtc,

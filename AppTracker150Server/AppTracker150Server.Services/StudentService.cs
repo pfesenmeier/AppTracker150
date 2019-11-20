@@ -21,7 +21,7 @@ namespace AppTracker150Server.Services
             var entity =
                 new Student()
                 {   
-                    Id = model.Id,
+                    StudentId = model.StudentId,
                     FirstName = model.FirstName,
                     LastName = model.LastName,
                     CohortId = model.CohortId,
@@ -44,7 +44,7 @@ namespace AppTracker150Server.Services
                     .Select(
                     e => new StudentListItem()
                     {
-                        Id = e.Id,
+                        StudentId = e.StudentId,
                         FirstName = e.FirstName,
                         LastName = e.LastName,
                         CohortId = e.CohortId,
@@ -62,14 +62,14 @@ namespace AppTracker150Server.Services
         {
             using (var context = new ApplicationDbContext())
             {
-                var entity = context.Student.Single(e => e.Id == id);
+                var entity = context.Student.Single(e => e.StudentId == id);
                 return
                     new StudentDetail
                     {
-                        Id = entity.Id,
+                        StudentId = entity.StudentId,
                         FirstName = entity.FirstName,
                         LastName = entity.LastName,
-                        CohortId = entity.LastName,
+                        CohortId = entity.CohortId,
                         ResumeLink = entity.ResumeLink,
                         LinkedInLink = entity.LinkedInLink,
                         PortfolioLink = entity.PortfolioLink,
@@ -83,9 +83,9 @@ namespace AppTracker150Server.Services
         {
             using (var context = new ApplicationDbContext())
             {
-                var entity = context.Student.Single(e => e.Id == model.Id);
+                var entity = context.Student.Single(e => e.StudentId == model.StudentId);
 
-                entity.Id = model.Id;
+                entity.StudentId = model.StudentId;
                 entity.FirstName = model.FirstName;
                 entity.LastName = model.LastName;
                 entity.CohortId = model.CohortId;
@@ -103,7 +103,7 @@ namespace AppTracker150Server.Services
         {
             using (var context = new ApplicationDbContext())
             {
-                var entity = context.Student.Single(e => e.Id == Id);
+                var entity = context.Student.Single(e => e.StudentId == Id);
                 context.Student.Remove(entity);
 
                 return context.SaveChanges() == 1;

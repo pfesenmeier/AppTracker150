@@ -10,15 +10,25 @@ using System.Web.Http;
 namespace AppTracker150Server.Controllers
 {
     [Authorize(Roles = "Admin")]
+    [RoutePrefix("Admin")]
     public class AdminController : ApiController
     {
+        [Route("Students")]
+        public IHttpActionResult GetStudents()
+        {
+            StudentService studentService = CreateStudentService();
+            var students = studentService.GetStudents();
+            return Ok(students);
+        }
+
+        [Route("Students")]
         public IHttpActionResult GetProfile(Guid id)
         {
             StudentService studentService = CreateStudentService();
             var profile = studentService.GetStudentById(id);
             return Ok(profile);
         }
-
+        [Route("Applications")]
         public IHttpActionResult GetApplications()
         {
             var ApplicationService = CreateApplicationService();
@@ -26,11 +36,11 @@ namespace AppTracker150Server.Controllers
             return Ok(application);
 
         }
-
-        public IHttpActionResult GetApplicationById(int id)
+        [Route("Applications")]
+        public IHttpActionResult GetApplicationById(int id, Guid studentId)
         {
             var ApplicationService = CreateApplicationService();
-            var application = ApplicationService.GetApplicationById(id);
+            var application = ApplicationService.GetApplicationById(id, studentId);
             return Ok(application);
         }
 

@@ -13,7 +13,7 @@ namespace AppTracker150Server.Models
         public int ApplicationId { get; set; }
         public string PostitionName { get; set; }
         public string CompanyName { get; set; }
-        public ApplicationStatus ApplicationStatus { get; set; }
+        public string ApplicationStatus { get; set; }
         [Display(Name = "Date Applied")]
         public DateTimeOffset DateCreatedUtc { get; set; }
     }
