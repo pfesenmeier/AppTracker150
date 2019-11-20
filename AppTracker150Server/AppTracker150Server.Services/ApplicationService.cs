@@ -43,7 +43,7 @@ namespace AppTracker150Server.Services
             {
                 var entity =
                       context.Applications
-                             .Where(e => e.StudentId == _userId)
+                             
                              .Select(
                                 e =>
                                     new ApplicationListItem()
