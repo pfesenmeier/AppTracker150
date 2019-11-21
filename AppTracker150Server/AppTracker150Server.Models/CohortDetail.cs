@@ -11,7 +11,7 @@ namespace AppTracker150Server.Models
     {
         public int Id { get; set; }
 
-        public Course Course { get; set; }
+        public string Course { get; set; }
 
         public DateTime StartDateUtc { get; set; }
 
