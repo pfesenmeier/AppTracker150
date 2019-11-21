@@ -11,7 +11,7 @@ namespace AppTracker150Server.Models
     public class CohortListItem
     {
         public int Id { get; set; }
-        public Course Course { get; set; }
+        public string Course { get; set; }
         [Display(Name="Start Date")]
         public DateTime StartDateUtc { get; set; }
         [Display(Name="End Date")]
