@@ -15,10 +15,10 @@ namespace AppTracker150Server.Controllers
     public class StudentsController : ApiController
     {
         [Route("Profile")]
-        public IHttpActionResult GetProfile(Guid id)
+        public IHttpActionResult GetProfile()
         {
             StudentService studentService = CreateStudentService();
-            var profile = studentService.GetStudentById(id);
+            var profile = studentService.GetStudentById(Guid.Parse(User.Identity.GetUserId()));
             return Ok(profile);
         }
         [Route("Profile")]
