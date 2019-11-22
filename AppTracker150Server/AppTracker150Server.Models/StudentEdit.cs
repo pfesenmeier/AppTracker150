@@ -10,7 +10,7 @@ namespace AppTracker150Server.Models
     public class StudentEdit
     {
         [Required]
-        public Guid Id { get; set; }
+        public Guid StudentId { get; set; }
 
         [Required]
         public string FirstName { get; set; }

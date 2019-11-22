@@ -11,14 +11,17 @@ using Microsoft.AspNet.Identity;
 namespace AppTracker150Server.Controllers
 {
     [Authorize(Roles = "Student")]
+    [RoutePrefix("Student")]
     public class StudentsController : ApiController
     {
-        public IHttpActionResult GetProfile(Guid id)
+        [Route("Profile")]
+        public IHttpActionResult GetProfile()
         {
             StudentService studentService = CreateStudentService();
-            var profile = studentService.GetStudentById(id);
+            var profile = studentService.GetStudentById(Guid.Parse(User.Identity.GetUserId()));
             return Ok(profile);
         }
+        [Route("Profile")]
         public IHttpActionResult PostProfile(StudentCreate student)
         {
             if (!ModelState.IsValid)
@@ -28,6 +31,7 @@ namespace AppTracker150Server.Controllers
                 return InternalServerError();
             return Ok();
         }
+        [Route("Profile")]
         public IHttpActionResult PutProfile(StudentEdit student)
         {
             if (!ModelState.IsValid)
@@ -39,6 +43,7 @@ namespace AppTracker150Server.Controllers
         }
 
         // GET 
+        [Route("Applications")]
         public IHttpActionResult GetApplicationsByStudentId()
         {
             var ApplicationService = CreateApplicationService();
@@ -47,6 +52,7 @@ namespace AppTracker150Server.Controllers
         }
 
         // GET api/values/5
+        [Route("Applications")]
         public IHttpActionResult GetApplicationById(int id)
         {
             var ApplicationService = CreateApplicationService();
@@ -55,6 +61,7 @@ namespace AppTracker150Server.Controllers
         }
 
         // POST api/values
+        [Route("Applications")]
         public IHttpActionResult PostApplication(ApplicationCreate application)
         {
             if (!ModelState.IsValid)
@@ -66,7 +73,8 @@ namespace AppTracker150Server.Controllers
         }
 
         // PUT api/values/5
-        public IHttpActionResult Put(ApplicationEdit application)
+        [Route("Applications")]
+        public IHttpActionResult PutApplication(ApplicationEdit application)
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
@@ -77,6 +85,7 @@ namespace AppTracker150Server.Controllers
         }
 
         // DELETE api/values/5
+        [Route("Applications")]
         public IHttpActionResult Delete(int id)
         {
             var service = CreateApplicationService();

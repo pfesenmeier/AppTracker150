@@ -20,5 +20,6 @@ namespace AppTracker150Server.Data
         public DateTime EndDateUtc { get; set; }
         public bool FullTime { get; set; }
         public Course Course { get; set; }
+        //public override string ToString() => $"{Course} {StartDateUtc.Month} {StartDateUtc.Year}";
     }
 }

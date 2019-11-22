@@ -26,6 +26,7 @@ namespace AppTracker150Server.Services
                     EndDateUtc = model.EndDateUtc,
                     FullTime = model.FullTime,
                     Course = model.Course,
+
                 };
             using (var context = new ApplicationDbContext())
             {
@@ -47,7 +48,7 @@ namespace AppTracker150Server.Services
                             StartDateUtc = e.StartDateUtc,
                             EndDateUtc = e.EndDateUtc,
                             FullTime = e.FullTime,
-                            Course = e.Course,
+                            Course = e.Course.ToString(),
 
                         });
                 return entity.ToArray();
@@ -63,7 +64,7 @@ namespace AppTracker150Server.Services
                 return
                     new CohortDetail
                     {
-                        Course = entity.Course,
+                        Course = entity.Course.ToString(),
                         Id = entity.Id,
                         FullTime = entity.FullTime,
                         StartDateUtc = entity.StartDateUtc,

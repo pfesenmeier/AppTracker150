@@ -11,7 +11,7 @@ namespace AppTracker150Server.Models
      {
         
         [Required]
-        public Guid Id { get; set; }
+        public Guid StudentId { get; set; }
 
         [Required]
         public string FirstName { get; set; }

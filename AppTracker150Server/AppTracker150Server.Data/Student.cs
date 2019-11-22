@@ -9,8 +9,9 @@ namespace AppTracker150Server.Data
 {
      public class Student
      {
+        
         [Required]
-        public Guid Id { get; set; }
+        public Guid StudentId { get; set; }
 
         public string FirstName { get; set; }
 
