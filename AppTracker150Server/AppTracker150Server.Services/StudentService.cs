@@ -63,18 +63,25 @@ namespace AppTracker150Server.Services
             using (var context = new ApplicationDbContext())
             {
                 var entity = context.Student.SingleOrDefault(e => e.StudentId == id);
-                return
-                    new StudentDetail
-                    {
-                        StudentId = entity.StudentId,
-                        FirstName = entity.FirstName,
-                        LastName = entity.LastName,
-                        CohortId = entity.CohortId,
-                        ResumeLink = entity.ResumeLink,
-                        LinkedInLink = entity.LinkedInLink,
-                        PortfolioLink = entity.PortfolioLink,
-                        GitHub = entity.GitHub,
-                    };
+                if (entity != null)
+                {
+                    return
+                        new StudentDetail
+                        {
+                            StudentId = entity.StudentId,
+                            FirstName = entity.FirstName,
+                            LastName = entity.LastName,
+                            CohortId = entity.CohortId,
+                            ResumeLink = entity.ResumeLink,
+                            LinkedInLink = entity.LinkedInLink,
+                            PortfolioLink = entity.PortfolioLink,
+                            GitHub = entity.GitHub,
+                        };
+                }
+                else
+                {
+                    return null;
+                }
 
             }
         }
