@@ -62,7 +62,7 @@ namespace AppTracker150Server.Services
         {
             using (var context = new ApplicationDbContext())
             {
-                var entity = context.Student.Single(e => e.StudentId == id);
+                var entity = context.Student.SingleOrDefault(e => e.StudentId == id);
                 return
                     new StudentDetail
                     {
@@ -74,7 +74,6 @@ namespace AppTracker150Server.Services
                         LinkedInLink = entity.LinkedInLink,
                         PortfolioLink = entity.PortfolioLink,
                         GitHub = entity.GitHub,
-
                     };
 
             }
