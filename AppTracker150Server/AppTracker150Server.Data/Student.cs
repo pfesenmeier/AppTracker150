@@ -12,11 +12,11 @@ namespace AppTracker150Server.Data
         
         [Required]
         public Guid StudentId { get; set; }
-
+        [Required]
         public string FirstName { get; set; }
-
+        [Required]
         public string LastName { get; set; }
-
+        [Required]
         public string CohortId { get; set; }
 
         public string ResumeLink { get; set; }
