@@ -9,28 +9,13 @@ namespace AppTracker150Server.Models
 {
     public class StudentDetail
     {
-        [Required]
         public Guid StudentId { get; set; }
-
-        [Required]
         public string FirstName { get; set; }
-
-        [Required]
         public string LastName { get; set; }
-
-        [Required]
         public string CohortId { get; set; }
-
-        [Required]
         public string ResumeLink { get; set; }
-
-        [Required]
         public string LinkedInLink { get; set; }
-
-        [Required]
         public string PortfolioLink { get; set; }
-
-        [Required]
         public string GitHub { get; set; }
     }
 }

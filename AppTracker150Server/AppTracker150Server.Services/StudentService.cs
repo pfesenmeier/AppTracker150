@@ -1,5 +1,6 @@
 ﻿using AppTracker150Server.Data;
 using AppTracker150Server.Models;
+using Microsoft.AspNet.Identity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,15 +21,15 @@ namespace AppTracker150Server.Services
         {
             var entity =
                 new Student()
-                {   
-                    StudentId = model.StudentId,
+                {
+                    StudentId = _userId,
                     FirstName = model.FirstName,
                     LastName = model.LastName,
                     CohortId = model.CohortId,
                     ResumeLink = model.ResumeLink,
                     LinkedInLink = model.LinkedInLink,
                     PortfolioLink = model.PortfolioLink,
-                    GitHub = model.GitHub,
+                    GitHub = model.GitHub
                 };
             using ( var context = new ApplicationDbContext())
             {
@@ -36,28 +37,25 @@ namespace AppTracker150Server.Services
                 return context.SaveChanges() == 1;
             }
         }
-        public IEnumerable<StudentListItem>GetStudents()
+        public IEnumerable<StudentListItem> GetStudents()
         {
             using (var context = new ApplicationDbContext())
             {
-                var entity = context.Student
-                    .Select(
-                    e => new StudentListItem()
+                var leftOuterJoinQuery =
+                    from user in context.Users 
+                    join student in context.Student on user.Id equals student.StudentId.ToString() into studentUser
+                    from student in studentUser
+                    select new StudentListItem
                     {
-                        StudentId = e.StudentId,
-                        FirstName = e.FirstName,
-                        LastName = e.LastName,
-                        CohortId = e.CohortId,
-                        ResumeLink = e.ResumeLink,
-                        LinkedInLink = e.LinkedInLink,
-                        PortfolioLink = e.PortfolioLink,
-                        GitHub = e.GitHub,
-
-                    });
-                return entity.ToArray();
-
+                        FirstName = student.FirstName,
+                        StudentId = student.StudentId,
+                        LastName = student.LastName,
+                        UserName = user.UserName
+                    };
+                return leftOuterJoinQuery.ToList();
             }
         }
+
         public StudentDetail GetStudentById (Guid id)
         {
             using (var context = new ApplicationDbContext())
