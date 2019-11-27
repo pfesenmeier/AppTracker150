@@ -37,21 +37,35 @@ namespace AppTracker150Server.Services
                 return context.SaveChanges() == 1;
             }
         }
+
+
         public IEnumerable<StudentListItem> GetStudents()
         {
             using (var context = new ApplicationDbContext())
             {
+                string roleId = context
+                                    .Roles
+                                    .Where(r => r.Name == "Student")
+                                    .First()
+                                    .Id;
+                //var studentUsers =
+                //    from user in context.Users
+                //    where user.Roles.Any(r => r.RoleId == roleId)
+                //    select user;
+                //var profiles = context.Student.ToList();
+                
                 var leftOuterJoinQuery =
-                    from user in context.Users 
-                    join student in context.Student on user.Id equals student.StudentId.ToString() into studentUser
-                    from student in studentUser
-                    select new StudentListItem
+                    from user in context.Users.Where(u => u.Roles.Any(r => r.RoleId == roleId))
+                    join profile in context.Student on user.Id equals profile.StudentId.ToString() into userProfile
+                    from item in userProfile.DefaultIfEmpty()
+                    select new StudentListItem()
                     {
-                        FirstName = student.FirstName,
-                        StudentId = student.StudentId,
-                        LastName = student.LastName,
-                        UserName = user.UserName
+                        FirstName = item.FirstName,
+                        LastName = item.LastName,
+                        UserName = user.UserName,
+                        StudentId = item.StudentId
                     };
+
                 return leftOuterJoinQuery.ToList();
             }
         }
