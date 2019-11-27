@@ -20,17 +20,9 @@ namespace AppTracker150Server.Models
 
         [Required]
         public string CohortId { get; set; }
-
-        [Required]
         public string ResumeLink { get; set; }
-
-        [Required]
         public string LinkedInLink { get; set; }
-
-        [Required]
         public string PortfolioLink { get; set; }
-
-        [Required]
         public string GitHub { get; set; }
     }
 }

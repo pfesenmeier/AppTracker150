@@ -1,5 +1,6 @@
 ﻿using AppTracker150Server.Data;
 using AppTracker150Server.Models;
+using Microsoft.AspNet.Identity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,15 +21,15 @@ namespace AppTracker150Server.Services
         {
             var entity =
                 new Student()
-                {   
-                    StudentId = model.StudentId,
+                {
+                    StudentId = _userId,
                     FirstName = model.FirstName,
                     LastName = model.LastName,
                     CohortId = model.CohortId,
                     ResumeLink = model.ResumeLink,
                     LinkedInLink = model.LinkedInLink,
                     PortfolioLink = model.PortfolioLink,
-                    GitHub = model.GitHub,
+                    GitHub = model.GitHub
                 };
             using ( var context = new ApplicationDbContext())
             {
@@ -36,46 +37,63 @@ namespace AppTracker150Server.Services
                 return context.SaveChanges() == 1;
             }
         }
-        public IEnumerable<StudentListItem>GetStudents()
+
+
+        public IEnumerable<StudentListItem> GetStudents()
         {
             using (var context = new ApplicationDbContext())
             {
-                var entity = context.Student
-                    .Select(
-                    e => new StudentListItem()
+                string roleId = context
+                                    .Roles
+                                    .Where(r => r.Name == "Student")
+                                    .First()
+                                    .Id;
+                //var studentUsers =
+                //    from user in context.Users
+                //    where user.Roles.Any(r => r.RoleId == roleId)
+                //    select user;
+                //var profiles = context.Student.ToList();
+                
+                var leftOuterJoinQuery =
+                    from user in context.Users.Where(u => u.Roles.Any(r => r.RoleId == roleId))
+                    join profile in context.Student on user.Id equals profile.StudentId.ToString() into userProfile
+                    from item in userProfile.DefaultIfEmpty()
+                    select new StudentListItem()
                     {
-                        StudentId = e.StudentId,
-                        FirstName = e.FirstName,
-                        LastName = e.LastName,
-                        CohortId = e.CohortId,
-                        ResumeLink = e.ResumeLink,
-                        LinkedInLink = e.LinkedInLink,
-                        PortfolioLink = e.PortfolioLink,
-                        GitHub = e.GitHub,
+                        FirstName = item.FirstName,
+                        LastName = item.LastName,
+                        UserName = user.UserName,
+                        StudentId = item.StudentId
+                    };
 
-                    });
-                return entity.ToArray();
-
+                return leftOuterJoinQuery.ToList();
             }
         }
+
         public StudentDetail GetStudentById (Guid id)
         {
             using (var context = new ApplicationDbContext())
             {
-                var entity = context.Student.Single(e => e.StudentId == id);
-                return
-                    new StudentDetail
-                    {
-                        StudentId = entity.StudentId,
-                        FirstName = entity.FirstName,
-                        LastName = entity.LastName,
-                        CohortId = entity.CohortId,
-                        ResumeLink = entity.ResumeLink,
-                        LinkedInLink = entity.LinkedInLink,
-                        PortfolioLink = entity.PortfolioLink,
-                        GitHub = entity.GitHub,
-
-                    };
+                var entity = context.Student.SingleOrDefault(e => e.StudentId == id);
+                if (entity != null)
+                {
+                    return
+                        new StudentDetail
+                        {
+                            StudentId = entity.StudentId,
+                            FirstName = entity.FirstName,
+                            LastName = entity.LastName,
+                            CohortId = entity.CohortId,
+                            ResumeLink = entity.ResumeLink,
+                            LinkedInLink = entity.LinkedInLink,
+                            PortfolioLink = entity.PortfolioLink,
+                            GitHub = entity.GitHub,
+                        };
+                }
+                else
+                {
+                    return null;
+                }
 
             }
         }

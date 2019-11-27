@@ -60,12 +60,15 @@ namespace AppTracker150Server.Controllers
         {
             ExternalLoginData externalLogin = ExternalLoginData.FromIdentity(User.Identity as ClaimsIdentity);
 
+
+
             return new UserInfoViewModel
             {
                 Email = User.Identity.GetUserName(),
                 HasRegistered = externalLogin == null,
-                LoginProvider = externalLogin != null ? externalLogin.LoginProvider : null
-            };
+                LoginProvider = externalLogin != null ? externalLogin.LoginProvider : null,
+                IsAdmin = User.IsInRole("Admin")
+        };
         }
 
         // POST api/Account/Logout
