@@ -14,10 +14,17 @@ namespace AppTracker150Server.Controllers
     [RoutePrefix("Cohort")]
     public class CohortController : ApiController
     {
-        public IHttpActionResult GetCohort()
+        public IHttpActionResult GetAllCohort()
         {
             CohortService cohortService = CreateCohortService();
             var cohorts = cohortService.GetCohorts();
+            return Ok(cohorts);
+        }
+
+        public IHttpActionResult GetCohort(int id)
+        {
+            CohortService cohortService = CreateCohortService();
+            var cohorts = cohortService.GetCohortById(id);
             return Ok(cohorts);
         }
 
@@ -39,6 +46,14 @@ namespace AppTracker150Server.Controllers
                 return InternalServerError();
             return Ok();
 
+        }
+
+        public IHttpActionResult Delete(int id)
+        {
+            var service = CreateCohortService();
+            if (!service.DeleteCohort(id))
+                return InternalServerError();
+            return Ok();
         }
 
         private CohortService CreateCohortService()
