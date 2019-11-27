@@ -127,6 +127,8 @@ namespace AppTracker150Server.Services
                 entity.PositionName = model.PositionName;
                 entity.Research = model.Research;
                 entity.SourceOfPosting = model.SourceOfPosting;
+                entity.Id = model.ApplicationId;
+                entity.StudentId = _userId;
 
                 return context.SaveChanges() == 1;
             }
