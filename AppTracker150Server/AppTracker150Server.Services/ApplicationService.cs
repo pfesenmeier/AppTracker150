@@ -96,7 +96,7 @@ namespace AppTracker150Server.Services
                 return
                     new ApplicationDetail
                     {
-                        ApplicationId = entity.Id,
+                        Id = entity.Id,
                         CompanyName = entity.CompanyName,
                         ApplicationStatus = entity.ApplicationStatus.ToString(),
                         Contacts = entity.Contacts,
@@ -118,7 +118,7 @@ namespace AppTracker150Server.Services
                 var entity =
                        context
                               .Applications
-                              .Single(e => e.Id == model.ApplicationId && e.StudentId == _userId);
+                              .Single(e => e.Id == model.Id && e.StudentId == _userId);
                 entity.CompanyName = model.CompanyName;
                 entity.ApplicationStatus = model.ApplicationStatus;
                 entity.Contacts = model.Contacts;
@@ -128,7 +128,7 @@ namespace AppTracker150Server.Services
                 entity.PositionName = model.PositionName;
                 entity.Research = model.Research;
                 entity.SourceOfPosting = model.SourceOfPosting;
-                entity.Id = model.ApplicationId;
+                entity.Id = model.Id;
                 entity.StudentId = _userId;
 
                 return context.SaveChanges() == 1;
