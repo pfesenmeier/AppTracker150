@@ -106,7 +106,8 @@ namespace AppTracker150Server.Services
                         JobLocation = entity.JobLocation,
                         PositionName = entity.PositionName,
                         Research = entity.Research,
-                        SourceOfPosting = entity.SourceOfPosting
+                        SourceOfPosting = entity.SourceOfPosting,
+                        StudentId = studentId
                     };
             }
         }
