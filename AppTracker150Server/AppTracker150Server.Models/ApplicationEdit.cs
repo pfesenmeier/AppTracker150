@@ -10,7 +10,7 @@ namespace AppTracker150Server.Models
 {
     public class ApplicationEdit
     {
-        public int ApplicationId { get; set; }
+        public int Id { get; set; }
         [Required]
         public ApplicationStatus ApplicationStatus { get; set; }
         [Required]

@@ -11,7 +11,7 @@ namespace AppTracker150Server.Models
     public class ApplicationDetail
     {
         public Guid StudentId { get; set; }
-        public int ApplicationId { get; set; }
+        public int Id { get; set; }
         public string ApplicationStatus { get; set; }
         public string CompanyName { get; set; }
         public string PositionName { get; set; }
