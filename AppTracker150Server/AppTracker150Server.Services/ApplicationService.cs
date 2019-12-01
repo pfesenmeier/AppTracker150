@@ -41,20 +41,34 @@ namespace AppTracker150Server.Services
         {
             using (var context = new ApplicationDbContext())
             {
-                var entity =
-                      context.Applications
-                             
-                             .Select(
-                                e =>
-                                    new ApplicationListItem()
-                                    {
-                                        ApplicationId = e.Id,
-                                        CompanyName = e.CompanyName,
-                                        PostitionName = e.PositionName,
-                                        ApplicationStatus = e.ApplicationStatus.ToString(),
-                                        DateCreatedUtc = e.DateCreatedUtc
-                                    });
-                return entity.ToArray();
+                var query =
+                    from application in context.Applications
+                    join student in context.Student on application.StudentId equals student.StudentId into studentApplications
+                    from item in studentApplications.DefaultIfEmpty()
+                    select new ApplicationListItem()
+                    {
+                        ApplicationId = application.Id,
+                        CompanyName = application.CompanyName,
+                        PositionName = application.PositionName,
+                        ApplicationEnum = application.ApplicationStatus,
+                        DateCreatedUtc = application.DateCreatedUtc,
+                        StudentName = item.FirstName + " " + item.LastName,
+                        StudentId = item.StudentId
+                    };
+                var result = query
+                    .ToArray().Select(ali =>
+                                 new ApplicationListItem()
+                                 {
+                                     ApplicationId = ali.ApplicationId,
+                                     CompanyName = ali.CompanyName,
+                                     PositionName = ali.PositionName,
+                                     ApplicationStatus = ali.ApplicationEnum.ToString(),
+                                     DateCreatedUtc = ali.DateCreatedUtc,
+                                     StudentName = ali.StudentName,
+                                     StudentId = ali.StudentId
+                                 });
+
+                return result;
             }
         }
         public IEnumerable<ApplicationListItem> GetApplications(Guid id)
@@ -70,7 +84,7 @@ namespace AppTracker150Server.Services
                                     {
                                         ApplicationId = e.Id,
                                         CompanyName = e.CompanyName,
-                                        PostitionName = e.PositionName,
+                                        PositionName = e.PositionName,
                                         ApplicationStatus = e.ApplicationStatus.ToString(),
                                         DateCreatedUtc = e.DateCreatedUtc
                                     });

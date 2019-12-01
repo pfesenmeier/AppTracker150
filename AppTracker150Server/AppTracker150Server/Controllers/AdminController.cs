@@ -32,7 +32,7 @@ namespace AppTracker150Server.Controllers
         public IHttpActionResult GetApplications()
         {
             var ApplicationService = CreateApplicationService();
-            var application = GetApplications();
+            var application = ApplicationService.GetApplications();
             return Ok(application);
 
         }
