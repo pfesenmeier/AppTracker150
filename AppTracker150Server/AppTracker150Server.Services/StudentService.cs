@@ -48,11 +48,6 @@ namespace AppTracker150Server.Services
                                     .Where(r => r.Name == "Student")
                                     .First()
                                     .Id;
-                //var studentUsers =
-                //    from user in context.Users
-                //    where user.Roles.Any(r => r.RoleId == roleId)
-                //    select user;
-                //var profiles = context.Student.ToList();
                 
                 var leftOuterJoinQuery =
                     from user in context.Users.Where(u => u.Roles.Any(r => r.RoleId == roleId))
