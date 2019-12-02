@@ -78,6 +78,7 @@
     <Compile Include="StudentCreate.cs" />
     <Compile Include="StudentDetail.cs" />
     <Compile Include="StudentEdit.cs" />
+    <Compile Include="StudentFullDetail.cs" />
     <Compile Include="StudentListItem.cs" />
   </ItemGroup>
   <ItemGroup>
