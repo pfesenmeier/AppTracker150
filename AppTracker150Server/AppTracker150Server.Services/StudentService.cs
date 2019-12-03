@@ -3,6 +3,7 @@ using AppTracker150Server.Models;
 using Microsoft.AspNet.Identity;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity.SqlServer;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -90,6 +91,53 @@ namespace AppTracker150Server.Services
                     return null;
                 }
 
+            }
+        }
+
+        public StudentFullDetail GetFullStudentInfoById(Guid id)
+        {
+            using (var context = new ApplicationDbContext()) 
+            {
+                var student = context.Student.SingleOrDefault(e => e.StudentId == id);
+                var cohort = context.Cohorts.SingleOrDefault(c => SqlFunctions.StringConvert((double?)c.Id).Trim() == student.CohortId);
+                var applications = context.Applications.Where(a => a.StudentId == id).Select(a =>
+                    new ApplicationListItem()
+                    {
+                        ApplicationId = a.Id,
+                        PositionName = a.PositionName,
+                        CompanyName = a.CompanyName,
+                        ApplicationStatus = a.ApplicationStatus.ToString(),
+                        DateCreatedUtc = a.DateCreatedUtc
+                    }
+                    ).ToList();
+                if (student != null)
+                {
+                    return
+                        new StudentFullDetail
+                        {
+                            StudentId = student.StudentId,
+                            FirstName = student.FirstName,
+                            LastName = student.LastName,
+                            Cohort = new CohortListItem() 
+                            {
+                                Course = cohort.Course.ToString(),
+                                EndDateUtc = cohort.EndDateUtc,
+                                FullTime = cohort.FullTime,
+                                Id = cohort.Id
+                            },
+                            ResumeLink = student.ResumeLink,
+                            LinkedInLink = student.LinkedInLink,
+                            PortfolioLink = student.PortfolioLink,
+                            GitHub = student.GitHub,
+                            FullOrPartTime = cohort.FullTime ? "FullTime" : "PartTime", 
+                            Applications = applications
+                        };
+
+                }
+                else
+                {
+                    return null;
+                }
             }
         }
         public bool UpdateStudent(StudentEdit model)
