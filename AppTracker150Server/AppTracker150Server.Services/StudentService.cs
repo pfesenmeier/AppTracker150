@@ -110,7 +110,7 @@ namespace AppTracker150Server.Services
                         DateCreatedUtc = a.DateCreatedUtc
                     }
                     ).ToList();
-                if (student != null)
+                if (student != null && cohort != null)
                 {
                     return
                         new StudentFullDetail
