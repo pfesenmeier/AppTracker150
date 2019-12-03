@@ -59,10 +59,25 @@ namespace AppTracker150Server.Services
                         FirstName = item.FirstName,
                         LastName = item.LastName,
                         UserName = user.UserName,
-                        StudentId = item.StudentId
+                        StudentId = user.Id
                     };
 
                 return leftOuterJoinQuery.ToList();
+            }
+        }
+
+        public UserInfo GetUserById(Guid id)
+        {
+            using (var context = new ApplicationDbContext())
+            {
+                var _id = id.ToString();
+                var entity = context.Users.Single(u => u.Id == _id);
+                return new UserInfo()
+                {
+                    Id = Guid.Parse(entity.Id),
+                    UserName = entity.UserName
+                };
+
             }
         }
 
@@ -160,12 +175,13 @@ namespace AppTracker150Server.Services
             };
         }
 
-        public bool DeleteStudent(Guid Id)
+        public bool DeleteStudent(Guid id)
         {
             using (var context = new ApplicationDbContext())
             {
-                var entity = context.Student.Single(e => e.StudentId == Id);
-                context.Student.Remove(entity);
+                var _id = id.ToString();
+                var entity = context.Users.Single(e => e.Id == _id);
+                context.Users.Remove(entity);
 
                 return context.SaveChanges() == 1;
             }
