@@ -25,7 +25,7 @@ namespace AppTracker150Server.Controllers
         public IHttpActionResult GetProfile(Guid id)
         {
             StudentService studentService = CreateStudentService();
-            var profile = studentService.GetStudentById(id);
+            var profile = studentService.GetFullStudentInfoById(id);
             return Ok(profile);
         }
         [Route("Applications")]
