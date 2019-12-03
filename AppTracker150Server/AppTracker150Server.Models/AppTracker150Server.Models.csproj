@@ -80,6 +80,7 @@
     <Compile Include="StudentEdit.cs" />
     <Compile Include="StudentFullDetail.cs" />
     <Compile Include="StudentListItem.cs" />
+    <Compile Include="UserInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\AppTracker150Server.Data\AppTracker150Server.Data.csproj">
