@@ -3,6 +3,7 @@ using AppTracker150Server.Models;
 using Microsoft.AspNet.Identity;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity.SqlServer;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -98,7 +99,7 @@ namespace AppTracker150Server.Services
             using (var context = new ApplicationDbContext()) 
             {
                 var student = context.Student.SingleOrDefault(e => e.StudentId == id);
-                var cohort = context.Cohorts.SingleOrDefault(c => $"{c.Id}" == student.CohortId);
+                var cohort = context.Cohorts.SingleOrDefault(c => SqlFunctions.StringConvert((double?)c.Id).Trim() == student.CohortId);
                 var applications = context.Applications.Where(a => a.StudentId == id).Select(a =>
                     new ApplicationListItem()
                     {
