@@ -28,6 +28,23 @@ namespace AppTracker150Server.Controllers
             var profile = studentService.GetFullStudentInfoById(id);
             return Ok(profile);
         }
+
+        [Route("Users")]
+        public IHttpActionResult GetUser(Guid id)
+        {
+            StudentService studentService = CreateStudentService();
+            var profile = studentService.GetUserById(id);
+            return Ok(profile);
+        }
+
+        [Route("Students")]
+        public IHttpActionResult DeleteStudent(Guid id)
+        {
+            StudentService service = CreateStudentService();
+            var profile = service.DeleteStudent(id);
+            return Ok();
+        }
+
         [Route("Applications")]
         public IHttpActionResult GetApplications()
         {
