@@ -125,34 +125,38 @@ namespace AppTracker150Server.Services
                         DateCreatedUtc = a.DateCreatedUtc
                     }
                     ).ToList();
-                if (student != null && cohort != null)
+                StudentFullDetail profile = null;
+                if (student != null)
                 {
-                    return
+                    profile =
                         new StudentFullDetail
                         {
                             StudentId = student.StudentId,
                             FirstName = student.FirstName,
                             LastName = student.LastName,
-                            Cohort = new CohortListItem() 
-                            {
-                                Course = cohort.Course.ToString(),
-                                EndDateUtc = cohort.EndDateUtc,
-                                FullTime = cohort.FullTime,
-                                Id = cohort.Id
-                            },
                             ResumeLink = student.ResumeLink,
                             LinkedInLink = student.LinkedInLink,
                             PortfolioLink = student.PortfolioLink,
-                            GitHub = student.GitHub,
-                            FullOrPartTime = cohort.FullTime ? "FullTime" : "PartTime", 
+                            GitHub = student.GitHub, 
                             Applications = applications
                         };
-
                 }
                 else
                 {
                     return null;
                 }
+                if(cohort != null)
+                {
+                    profile.Cohort = new CohortListItem() 
+                    {
+                        Course = cohort.Course.ToString(),
+                        EndDateUtc = cohort.EndDateUtc,
+                        FullTime = cohort.FullTime,
+                        Id = cohort.Id
+                    };
+                    profile.FullOrPartTime = cohort.FullTime ? "FullTime" : "PartTime";
+                }
+                return profile;
             }
         }
         public bool UpdateStudent(StudentEdit model)
